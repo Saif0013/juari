@@ -3,143 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Call Bridge 21 Score Tracker</title>
+    <title>Juaris of Irwin</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-    <h2>Call Bridge 21 Score Tracker</h2>
-    
-    <div class="controls">
-        <button onclick="addRow()">Add Round</button>
-        <button onclick="removeRow()">Remove Last Round</button>
-        <button onclick="saveScores()">Save Scores</button>
-        <button onclick="loadScores()">Load Scores</button>
-        <button onclick="resetScores()">Reset</button>
+
+    <!-- Password Protection Modal -->
+    <div id="passwordModal" class="modal">
+        <div class="modal-content">
+            <h2>Enter Password to Access</h2>
+            <input type="password" id="passwordInput" placeholder="Enter Password">
+            <button onclick="checkPassword()">Submit</button>
+            <p id="errorMessage" style="color: red; display: none;">Incorrect password. Try again.</p>
+        </div>
     </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1>Juaris of Irwin</h1>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="history.html">History</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="body-part">
     
-    <table id="scoreTable">
-        <thead>
-            <tr>
-                <th><input type="text" id="gameName" value="Call Bridge 21" onchange="saveGameName()"></th>
-            </tr>
-            <tr id="headerRow">
-                <th>Round</th>
-                <th><input type="text" value="Saif" onchange="updatePlayerNames()"></th>
-                <th><input type="text" value="Yusuf" onchange="updatePlayerNames()"></th>
-                <th><input type="text" value="Roshaan" onchange="updatePlayerNames()"></th>
-                <th><input type="text" value="Ahnaf" onchange="updatePlayerNames()"></th>
-                <th>Total</th>
-            </tr>
-        </thead>
-        <tbody id="scoreBody"></tbody>
-        <tfoot>
-            <tr id="totalRow">
-                <td>Total</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-            </tr>
-        </tfoot>
-    </table>
-
-    <script>
-        function addRow() {
-            let table = document.getElementById("scoreBody");
-            let row = document.createElement("tr");
-            let cell = document.createElement("td");
-            cell.textContent = table.rows.length + 1;
-            row.appendChild(cell);
-            
-            let cols = document.getElementById("headerRow").children.length - 2;
-            for (let i = 0; i < cols; i++) {
-                let inputCell = document.createElement("td");
-                let input = document.createElement("input");
-                input.type = "number";
-                input.oninput = updateTotals;
-                inputCell.appendChild(input);
-                row.appendChild(inputCell);
-            }
-            
-            let totalCell = document.createElement("td");
-            totalCell.textContent = 0;
-            row.appendChild(totalCell);
-            
-            table.appendChild(row);
-        }
-
-        function removeRow() {
-            let table = document.getElementById("scoreBody");
-            if (table.rows.length > 0) {
-                table.deleteRow(-1);
-                updateTotals();
-            }
-        }
+        <div class="controls">
+            <button onclick="addRow()">Add Round</button>
+            <button onclick="removeRow()">Remove Last Round</button>
+            <button onclick="saveScores()">Save Scores</button>
+            <button onclick="loadScores()">Load Scores</button>
+            <button onclick="resetScores()">Reset</button>
+        </div>
         
-        function updateTotals() {
-            let rows = document.getElementById("scoreBody").children;
-            let totalScores = new Array(rows[0]?.children.length - 2).fill(0);
-            
-            for (let row of rows) {
-                let total = 0;
-                for (let i = 1; i < row.children.length - 1; i++) {
-                    let value = parseInt(row.children[i].children[0]?.value) || 0;
-                    total += value;
-                    totalScores[i - 1] += value;
-                }
-                row.lastElementChild.textContent = total;
-            }
-            
-            let totalRow = document.getElementById("totalRow");
-            for (let i = 1; i < totalRow.children.length - 1; i++) {
-                totalRow.children[i].textContent = totalScores[i - 1];
-            }
-            totalRow.lastElementChild.textContent = totalScores.reduce((a, b) => a + b, 0);
-        }
-        
-        function saveScores() {
-            let data = [];
-            for (let row of document.getElementById("scoreBody").children) {
-                let rowData = [];
-                for (let i = 1; i < row.children.length - 1; i++) {
-                    rowData.push(row.children[i].children[0]?.value || "0");
-                }
-                data.push(rowData);
-            }
-            localStorage.setItem("callBridgeScores", JSON.stringify(data));
-        }
-        
-        function loadScores() {
-            let data = JSON.parse(localStorage.getItem("callBridgeScores")) || [];
-            let table = document.getElementById("scoreBody");
-            table.innerHTML = "";
-            data.forEach(rowData => {
-                addRow();
-                let lastRow = table.lastElementChild;
-                rowData.forEach((val, idx) => lastRow.children[idx + 1].children[0].value = val);
-            });
-            updateTotals();
-        }
-        
-        function resetScores() {
-            if (confirm("Are you sure you want to reset scores?")) {
-                localStorage.removeItem("callBridgeScores");
-                document.getElementById("scoreBody").innerHTML = "";
-                updateTotals();
-            }
-        }
+        <table id="scoreTable">
+            <thead>
+                <tr>
+                    <th><input type="text" id="gameName" value="Call Bridge 21" onchange="saveGameName()"></th>
+                </tr>
+                <tr id="headerRow">
+                    <th>Round</th>
+                    <th><input type="text" value="Saif" onchange="updatePlayerNames()"></th>
+                    <th><input type="text" value="Yusuf" onchange="updatePlayerNames()"></th>
+                    <th><input type="text" value="Roshaan" onchange="updatePlayerNames()"></th>
+                    <th><input type="text" value="Ahnaf" onchange="updatePlayerNames()"></th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody id="scoreBody"></tbody>
+            <tfoot>
+                <tr id="totalRow">
+                    <td>Total</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            </tfoot>
+        </table> 
 
-        function saveGameName() {
-            localStorage.setItem("gameName", document.getElementById("gameName").value);
-        }
+    </section>
 
-        function updatePlayerNames() {
-            let headers = document.querySelectorAll("#headerRow input");
-            let names = Array.from(headers).map(input => input.value);
-            localStorage.setItem("playerNames", JSON.stringify(names));
-        }
-    </script>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Juaris of Irwin.</p>
+        <p>All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script> 
+    
 </body>
 </html>
-
