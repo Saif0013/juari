@@ -1,6 +1,126 @@
-body { font-family: Arial, sans-serif; text-align: center; background-color: #f9f9f9; }
-table { width: 80%; margin: auto; border-collapse: collapse; background: white; }
-th, td { border: 1px solid black; padding: 10px; text-align: center; }
-input { width: 60px; text-align: center; border: none; }
-.controls { margin: 10px; }
-button { margin: 5px; padding: 8px; }
+body { 
+    font-family: Georgia, 'Times New Roman', Times, serif; 
+    text-align: center; 
+    background-color: #f9f9f9; 
+} 
+
+
+.body-part {
+    margin-top: 160px;
+    margin-bottom: 160px;
+}
+
+table { 
+    width: 80%; 
+    margin: auto; 
+    border-collapse: collapse; 
+    background: white; 
+}
+
+th, td { 
+    border: 1px solid black; 
+    padding: 10px; 
+    text-align: center; 
+}
+
+input { 
+    width: 100px; 
+    text-align: center; 
+    border: none; 
+}
+
+.controls { 
+    margin: 10px; 
+}
+
+button { 
+    margin: 5px; 
+    padding: 8px; 
+}
+
+
+/* Navbar Styles */
+.navbar {
+    background-color: #333;
+    color: white;
+    padding: 15px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.nav-links li {
+    margin: 0 15px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0; 
+}
+
+/* Password Modal Styles */
+.modal {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.modal-content input {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.modal-content button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.modal-content button:hover {
+    background-color: #555;
+}
