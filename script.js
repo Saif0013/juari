@@ -51,17 +51,35 @@ function updateTotals() {
     totalRow.lastElementChild.textContent = totalScores.reduce((a, b) => a + b, 0);
 }
 
+
+
 function saveScores() {
-    let data = [];
-    for (let row of document.getElementById("scoreBody").children) {
-        let rowData = [];
-        for (let i = 1; i < row.children.length - 1; i++) {
-            rowData.push(row.children[i].children[0]?.value || "0");
-        }
-        data.push(rowData);
+    let gameName = document.getElementById("gameName").value;
+    let playerInputs = document.querySelectorAll("#headerRow input");
+    let totalRow = document.getElementById("totalRow").getElementsByTagName("td");
+
+    let players = [];
+    for (let i = 1; i < playerInputs.length; i++) {
+        players.push({
+            name: playerInputs[i].value,
+            score: parseInt(totalRow[i].innerText) || 0
+        });
     }
-    localStorage.setItem("callBridgeScores", JSON.stringify(data));
+
+    let data = { game_name: gameName, players: players };
+
+    fetch("save_score.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(result => {
+        alert(result.message);
+    })
+    .catch(error => console.error("Error:", error));
 }
+
 
 function loadScores() {
     let data = JSON.parse(localStorage.getItem("callBridgeScores")) || [];
@@ -98,13 +116,4 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("passwordModal").style.display = "flex";
 });
 
-function checkPassword() {
-    const enteredPassword = document.getElementById("passwordInput").value;
-    const correctPassword = "Yaris"; // Change this to your preferred password
 
-    if (enteredPassword === correctPassword) {
-        document.getElementById("passwordModal").style.display = "none";
-    } else {
-        document.getElementById("errorMessage").style.display = "block";
-    }
-}
