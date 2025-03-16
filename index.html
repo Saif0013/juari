@@ -8,23 +8,12 @@
 </head>
 <body>
 
-    <!-- Password Protection Modal -->
-    <div id="passwordModal" class="modal">
-        <div class="modal-content">
-            <h2>Enter Password to Access</h2>
-            <input type="password" id="passwordInput" placeholder="Enter Password">
-            <button onclick="checkPassword()">Submit</button>
-            <p id="errorMessage" style="color: red; display: none;">Incorrect password. Try again.</p>
-        </div>
-    </div>
-
     <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="nav-container">
-            <h1>Juaris of Irwin</h1>
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="history.html">History</a></li>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="history.html">HISTORY</a></li>
             </ul>
         </div>
     </nav>
@@ -32,11 +21,10 @@
     <section class="body-part">
     
         <div class="controls">
-            <button onclick="addRow()">Add Round</button>
-            <button onclick="removeRow()">Remove Last Round</button>
-            <button onclick="saveScores()">Save Scores</button>
-            <button onclick="loadScores()">Load Scores</button>
-            <button onclick="resetScores()">Reset</button>
+            <button onclick="addRow()" class="add-button">Add Round</button>
+            <button onclick="removeRow()" class="remove-button">Remove Last Round</button>
+            <button onclick="saveScores()" class="save-button">Save Scores</button>
+            <button onclick="resetScores()" class="edit-button">Reset</button>
         </div>
         
         <table id="scoreTable">
@@ -70,7 +58,7 @@
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Juaris of Irwin.</p>
+        <p class="p-footer">&copy; 2025 Juaris of Irwin.</p>
         <p>All rights reserved.</p>
     </footer>
 
