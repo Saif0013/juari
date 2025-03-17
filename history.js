@@ -1,8 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
-    fetch("get_history.php")
+    fetch("https://saiful0013.great-site.net/get_history.php")
         .then(response => response.json())
         .then(data => {
             const tableBody = document.getElementById("historyBody");
+            tableBody.innerHTML = "";
 
             data.forEach(record => {
                 let row = document.createElement("tr");
@@ -24,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function deleteRecord(id) {
     if (confirm("Are you sure you want to delete this record?")) {
-        fetch("delete_score.php?id=" + id, { method: "GET" })
+        fetch("https://saiful0013.great-site.net/delete_score.php?id=" + id, { method: "GET" })
             .then(response => response.json())
             .then(result => {
                 alert(result.message);
@@ -33,3 +34,6 @@ function deleteRecord(id) {
             .catch(error => console.error("Error deleting record:", error));
     }
 }
+
+
+
