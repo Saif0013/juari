@@ -19,41 +19,42 @@
     </nav>
 
     <section class="body-part">
-    
-        <div class="controls">
-            <button onclick="addRow()" class="add-button">Add Round</button>
-            <button onclick="removeRow()" class="remove-button">Remove Last Round</button>
-            <button onclick="saveScores()" class="save-button">Save Scores</button>
-            <button onclick="resetScores()" class="edit-button">Reset</button>
-        </div>
-        
-        <table id="scoreTable">
-            <thead>
-                <tr>
-                    <th><input type="text" id="gameName" value="Call Bridge 21" onchange="saveGameName()"></th>
-                </tr>
-                <tr id="headerRow">
-                    <th>Round</th>
-                    <th><input type="text" value="Saif" onchange="updatePlayerNames()"></th>
-                    <th><input type="text" value="Yusuf" onchange="updatePlayerNames()"></th>
-                    <th><input type="text" value="Roshaan" onchange="updatePlayerNames()"></th>
-                    <th><input type="text" value="Ahnaf" onchange="updatePlayerNames()"></th>
-                    <th>Total</th>
-                </tr>
-            </thead>
-            <tbody id="scoreBody"></tbody>
-            <tfoot>
-                <tr id="totalRow">
-                    <td>Total</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                </tr>
-            </tfoot>
-        </table> 
-
+        <form action="https://saiful0013.great-site.net/save_score.php" method="POST">
+            <div class="controls">
+                <button type="button" onclick="addRow()" class="add-button">Add Round</button>
+                <button type="button" onclick="removeRow()" class="remove-button">Remove Last Round</button>
+                <button type="submit" class="save-button">Save Scores</button>
+            </div>
+            
+            <table id="scoreTable">
+                <thead>
+                    <tr>
+                        <th><input type="text" name="game_name" id="gameName" value="Call Bridge 21"></th>
+                    </tr>
+                    <tr id="headerRow">
+                        <th>Round</th>
+                        <th><input type="text" name="player_names[]" value="Saif"></th>
+                        <th><input type="text" name="player_names[]" value="Yusuf"></th>
+                        <th><input type="text" name="player_names[]" value="Roshaan"></th>
+                        <th><input type="text" name="player_names[]" value="Ahnaf"></th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody id="scoreBody">
+                    <!-- JavaScript will add rows here -->
+                </tbody>
+                <tfoot>
+                    <tr id="totalRow">
+                        <td>Total</td>
+                        <td><input type="number" name="player_scores[]" id="input_total_0" value="0" readonly></td>
+                        <td><input type="number" name="player_scores[]" id="input_total_1" value="0" readonly></td>
+                        <td><input type="number" name="player_scores[]" id="input_total_2" value="0" readonly></td>
+                        <td><input type="number" name="player_scores[]" id="input_total_3" value="0" readonly></td>
+                        <td><input type="number" name="game_total" id="input_game_total" value="0" readonly></td>
+                    </tr>                    
+                </tfoot>
+            </table> 
+        </form>
     </section>
 
     <!-- Footer -->
@@ -66,3 +67,7 @@
     
 </body>
 </html>
+
+
+
+
