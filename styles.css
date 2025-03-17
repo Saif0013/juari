@@ -130,7 +130,7 @@ input {
 
 
 footer {
-    background-color: #117fc9;
+    background-color: rgb(90, 169, 244);
     padding: 40px 0;
     position: fixed; 
     width: 100%;
@@ -146,6 +146,6 @@ footer p {
 
 .p-footer {
     margin-top: 5px;
-} 
+}
 
 
