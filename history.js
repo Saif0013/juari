@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    fetch("https://saiful0013.great-site.net/get_history.php")
+    fetch("http://saiful0013.great-site.net/get_history.php")
         .then(response => response.json())
         .then(data => {
             const tableBody = document.getElementById("historyBody");
@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function deleteRecord(id) {
     if (confirm("Are you sure you want to delete this record?")) {
-        fetch("https://saiful0013.great-site.net/delete_score.php?id=" + id, { method: "GET" })
+        fetch("http://saiful0013.great-site.net/delete_score.php?id=" + id, { method: "GET" })
             .then(response => response.json())
             .then(result => {
                 alert(result.message);
