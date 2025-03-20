@@ -99,13 +99,13 @@ input {
     display: flex;
     justify-content: center;
     align-items: center; 
-    height: 50px;
+    height: 60px;
+    width: 100%;
 }
 
 .nav-container {
     display: flex;
     justify-content: center;
-    width: 100%;
 }
 
 .nav-links {
